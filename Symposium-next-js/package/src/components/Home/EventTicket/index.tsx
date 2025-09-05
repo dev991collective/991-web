@@ -15,7 +15,7 @@ export default function EventTicket() {
           data-aos-delay="120"
           data-aos-duration="900"
         >
-          ALGUMA MERDA AQUI
+          SOME TEXT HERE
         </h2>
 
         <p
