@@ -18,8 +18,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       {/* body vira o “root” do sticky-footer */}
       <body className={`${dmsans.className} bg-black text-white antialiased`}>
-        <AuthDialogProvider>
-          <SessionProviderComp session={session}>
+        {/* <AuthDialogProvider> */}
+          {/* <SessionProviderComp session={session}> */}
             <ThemeProvider attribute="class" enableSystem defaultTheme="system">
               <Aoscompo>
                 {/* STICKY-FOOTER: flex col + min-h-screen */}
@@ -39,8 +39,8 @@ export default function RootLayout({
               {/* Fora do fluxo principal (ok ser fixo/absoluto) */}
               <ScrollToTop />
             </ThemeProvider>
-          </SessionProviderComp>
-        </AuthDialogProvider>
+          {/* </SessionProviderComp> */}
+        {/* </AuthDialogProvider> */}
       </body>
     </html>
   );
