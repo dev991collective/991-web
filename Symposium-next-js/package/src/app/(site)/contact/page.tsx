@@ -6,7 +6,7 @@ import HeroSub from "@/components/SharedComponent/HeroSub";
 import { Metadata } from "next";
 import TicketSection from "@/components/Home/TicketSection";
 export const metadata: Metadata = {
-    title: "Contact | Symposium",
+    title: "Contact | 991Collective",
 };
 
 const page = () => {
@@ -18,7 +18,7 @@ const page = () => {
     <>
       <HeroSub
         title="Contact Us"
-        description="Discover a wealth of insightful materials meticulously crafted to provide you with a comprehensive understanding of the latest trends."
+        description="Use this form for label, booking, and business inquiries."
         breadcrumbLinks={breadcrumbLinks}
       />
       <ContactInfo />

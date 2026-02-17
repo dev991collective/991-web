@@ -1,46 +1,50 @@
+import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
-import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import NextTopLoader from "nextjs-toploader";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
-import { ThemeProvider } from "next-themes";
-import ScrollToTop from '@/components/ScrollToTop';
+import ScrollToTop from "@/components/ScrollToTop";
 import Aoscompo from "@/utils/aos";
-import SessionProviderComp from "@/components/nextauth/SessionProvider";
-import { AuthDialogProvider } from "./context/AuthDialogContext";
-const dmsans = DM_Sans({ subsets: ["latin"] });
-import NextTopLoader from 'nextjs-toploader';
+import "./globals.css";
 
-export default function RootLayout({
-  children,
-  session,
-}: Readonly<{ children: React.ReactNode; session: any }>) {
+const dmsans = DM_Sans({ subsets: ["latin"] });
+
+function getMetadataBase() {
+  const fallback = "https://991collective.com";
+  const source = process.env.NEXT_PUBLIC_SITE_URL || fallback;
+
+  try {
+    return new URL(source);
+  } catch {
+    return new URL(fallback);
+  }
+}
+
+export const metadata: Metadata = {
+  metadataBase: getMetadataBase(),
+  title: {
+    default: "991Collective",
+    template: "%s | 991Collective",
+  },
+  description: "Independent multigenre record label based in Sao Paulo, Brazil.",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* body vira o “root” do sticky-footer */}
       <body className={`${dmsans.className} bg-black text-white antialiased`}>
-        {/* <AuthDialogProvider> */}
-          {/* <SessionProviderComp session={session}> */}
-            <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-              <Aoscompo>
-                {/* STICKY-FOOTER: flex col + min-h-screen */}
-                <div className="flex min-h-screen flex-col">
-                  <Header />
-                  <NextTopLoader />
-
-                  {/* O conteúdo cresce e empurra o footer */}
-                  <main className="flex-1">
-                    {children}
-                  </main>
-
-                  <Footer />
-                </div>
-              </Aoscompo>
-
-              {/* Fora do fluxo principal (ok ser fixo/absoluto) */}
-              <ScrollToTop />
-            </ThemeProvider>
-          {/* </SessionProviderComp> */}
-        {/* </AuthDialogProvider> */}
+        <ThemeProvider attribute="class" enableSystem defaultTheme="system">
+          <Aoscompo>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <NextTopLoader />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </Aoscompo>
+          <ScrollToTop />
+        </ThemeProvider>
       </body>
     </html>
   );
