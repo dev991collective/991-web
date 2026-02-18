@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Logo from "./Logo";
-import { headerData } from "../Header/Navigation/menuData";
-import HeaderLink from "../Header/Navigation/HeaderLink";
+import { headerData } from "./Navigation/menuData";
+import HeaderLink from "./Navigation/HeaderLink";
 
 const Header: React.FC = () => {
   const pathUrl = usePathname();
